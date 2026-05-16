@@ -170,11 +170,25 @@ Minimalna paleta kolorów:
 
 ## Zakres pierwszego minimalnego prototypu
 
-Pierwszy prototyp powinien być statyczną aplikacją webową uruchamianą z pliku `index.html`. Minimalna implementacja powinna zawierać:
+Pierwszy prototyp powinien być natywną aplikacją C++ uruchamianą jako program `myos-gui`. Minimalna implementacja powinna zawierać:
 
 - pulpit z ikonami aplikacji,
 - otwierane menu aplikacji z wyszukiwarką,
-- okno ustawień z przełącznikiem motywu,
+- okno ustawień z przełącznikiem motywu i wyborem akcentu,
 - okno menedżera plików z przykładową listą plików,
 - okno terminala z prostą obsługą komend demonstracyjnych,
-- panel statusu z godziną, stanem sieci, baterią i szybkim przełącznikiem motywu.
+- panel statusu z godziną, stanem sieci, baterią i szybkim przełącznikiem motywu,
+- implementację w C++17 z prostą warstwą rysowania opartą o X11.
+
+
+## Uruchomienie prototypu C++
+
+Prototyp jest budowany przez CMake i wymaga bibliotek nagłówkowych X11 dostępnych w systemie. Przykładowe komendy:
+
+```bash
+cmake -S . -B build
+cmake --build build
+./build/myos-gui
+```
+
+Jeżeli program zostanie uruchomiony poza sesją graficzną, wyświetli komunikat o braku dostępu do serwera X11.
