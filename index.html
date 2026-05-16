@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyOS GUI Prototype</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body data-theme="dark">
+    <main class="desktop" aria-label="Pulpit MyOS">
+      <section class="desktop-icons" aria-label="Skróty aplikacji">
+        <button class="desktop-icon" data-open-app="files" type="button">
+          <span class="icon-symbol">📁</span>
+          <span>Pliki</span>
+        </button>
+        <button class="desktop-icon" data-open-app="terminal" type="button">
+          <span class="icon-symbol">▣</span>
+          <span>Terminal</span>
+        </button>
+        <button class="desktop-icon" data-open-app="settings" type="button">
+          <span class="icon-symbol">⚙️</span>
+          <span>Ustawienia</span>
+        </button>
+      </section>
+
+      <section class="welcome-card" aria-label="Wprowadzenie">
+        <p class="eyebrow">MyOS Preview</p>
+        <h1>Minimalny prototyp GUI</h1>
+        <p>
+          Otwórz menu aplikacji, uruchom okna systemowe i sprawdź szybkie ustawienia w panelu statusu.
+        </p>
+      </section>
+
+      <section class="app-menu hidden" id="app-menu" aria-label="Menu aplikacji">
+        <div class="menu-header">
+          <h2>Menu aplikacji</h2>
+          <button class="ghost-button" id="close-menu" type="button" aria-label="Zamknij menu">×</button>
+        </div>
+        <label class="search-label" for="app-search">Szukaj aplikacji</label>
+        <input id="app-search" class="search-input" type="search" placeholder="np. terminal" />
+        <div class="app-grid" id="app-grid">
+          <button class="app-tile" data-open-app="settings" type="button" data-name="ustawienia wygląd motyw">
+            <span>⚙️</span>
+            <strong>Ustawienia</strong>
+            <small>Motyw, akcent i informacje</small>
+          </button>
+          <button class="app-tile" data-open-app="files" type="button" data-name="pliki menedżer folder katalog">
+            <span>📁</span>
+            <strong>Menedżer plików</strong>
+            <small>Foldery i pliki demo</small>
+          </button>
+          <button class="app-tile" data-open-app="terminal" type="button" data-name="terminal konsola komendy">
+            <span>▣</span>
+            <strong>Terminal</strong>
+            <small>Komendy demonstracyjne</small>
+          </button>
+        </div>
+      </section>
+
+      <section class="window hidden" id="settings-window" aria-label="Ustawienia">
+        <header class="window-header">
+          <div>
+            <span class="window-icon">⚙️</span>
+            <strong>Ustawienia</strong>
+          </div>
+          <button class="ghost-button" data-close-window="settings-window" type="button">×</button>
+        </header>
+        <div class="window-content settings-layout">
+          <article class="setting-card">
+            <h3>Motyw</h3>
+            <p>Przełącz wygląd całego prototypu.</p>
+            <button class="primary-button" id="theme-toggle" type="button">Przełącz motyw</button>
+          </article>
+          <article class="setting-card">
+            <h3>Akcent</h3>
+            <div class="accent-row" aria-label="Kolory akcentu">
+              <button class="accent-dot sky active" data-accent="sky" type="button"></button>
+              <button class="accent-dot violet" data-accent="violet" type="button"></button>
+              <button class="accent-dot amber" data-accent="amber" type="button"></button>
+            </div>
+          </article>
+          <article class="setting-card">
+            <h3>System</h3>
+            <p>MyOS GUI Prototype · build 0.1.0</p>
+            <label class="switch-row"><input type="checkbox" checked /> Animacje interfejsu</label>
+            <label class="switch-row"><input type="checkbox" /> Kompaktowy układ</label>
+          </article>
+        </div>
+      </section>
+
+      <section class="window hidden" id="files-window" aria-label="Menedżer plików">
+        <header class="window-header">
+          <div>
+            <span class="window-icon">📁</span>
+            <strong>Menedżer plików</strong>
+          </div>
+          <button class="ghost-button" data-close-window="files-window" type="button">×</button>
+        </header>
+        <div class="window-content file-manager">
+          <aside class="file-sidebar">
+            <button type="button">Pulpit</button>
+            <button type="button">Dokumenty</button>
+            <button type="button">Pobrane</button>
+          </aside>
+          <div class="file-main">
+            <div class="path-bar">/home/myos</div>
+            <div class="file-actions">
+              <button class="ghost-button" id="new-folder" type="button">Nowy folder</button>
+              <button class="ghost-button" id="refresh-files" type="button">Odśwież</button>
+            </div>
+            <ul class="file-list" id="file-list">
+              <li><span>📁</span> Documents <small>folder</small></li>
+              <li><span>📁</span> Pictures <small>folder</small></li>
+              <li><span>📄</span> readme.txt <small>2 KB</small></li>
+              <li><span>🧩</span> myos.config <small>1 KB</small></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="window hidden" id="terminal-window" aria-label="Terminal">
+        <header class="window-header">
+          <div>
+            <span class="window-icon">▣</span>
+            <strong>Terminal</strong>
+          </div>
+          <button class="ghost-button" data-close-window="terminal-window" type="button">×</button>
+        </header>
+        <div class="window-content terminal">
+          <div class="terminal-output" id="terminal-output">
+            <p>myos@preview:/home$ help</p>
+            <p>Dostępne komendy: help, date, clear, apps</p>
+          </div>
+          <form class="terminal-form" id="terminal-form">
+            <label for="terminal-input">myos@preview:/home$</label>
+            <input id="terminal-input" autocomplete="off" placeholder="Wpisz komendę" />
+          </form>
+        </div>
+      </section>
+
+      <section class="quick-settings hidden" id="quick-settings" aria-label="Szybkie ustawienia">
+        <h2>Szybkie ustawienia</h2>
+        <button class="primary-button" id="quick-theme-toggle" type="button">Przełącz motyw</button>
+        <button class="ghost-button" data-open-app="settings" type="button">Pełne ustawienia</button>
+      </section>
+
+      <footer class="status-panel" aria-label="Panel statusu">
+        <button class="launcher" id="open-menu" type="button">⊞ Menu</button>
+        <div class="running-apps" id="running-apps">Brak aktywnych okien</div>
+        <button class="status-group" id="status-toggle" type="button" aria-label="Otwórz szybkie ustawienia">
+          <span>Wi‑Fi</span>
+          <span>87%</span>
+          <span id="clock">--:--</span>
+        </button>
+      </footer>
+    </main>
+    <script src="src/app.js"></script>
+  </body>
+</html>
